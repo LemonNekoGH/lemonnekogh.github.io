@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/articles/how-to-make-translucent-statusbar", {data:[{}],fetch:{},mutations:void 0});
