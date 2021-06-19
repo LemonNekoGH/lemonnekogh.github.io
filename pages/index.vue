@@ -27,7 +27,7 @@ export default Vue.extend({
   },
   methods: {
     async getContent () {
-      const posts = await this.$content('articles').sortBy('date', 'desc').fetch()
+      const posts = await this.$content('articles').sortBy('createdAt', 'desc').fetch()
       if (Array.isArray(posts)) {
         this.posts = posts
       } else {

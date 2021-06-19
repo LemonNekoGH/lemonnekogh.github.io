@@ -4,15 +4,15 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - temp',
-    title: 'temp',
+    titleTemplate: '%s - 柠喵的布洛阁',
+    title: '柠喵的布洛阁',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'zh'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '柠喵的博客，用于记录各种各样的东西' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -54,5 +54,21 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+  generate: {
+    async routes (): Promise<string[]> {
+      const { $content } = require('@nuxt/content')
+      const files = await $content('articles', { deep: true })
+        .sortBy('createdAt', 'desc')
+        .only(['path'])
+        .fetch()
+      const routes: string[] = []
+      if (Array.isArray(files)) {
+        files.forEach(it => routes.push(it.path))
+      } else {
+        routes.push(files.path)
+      }
+      return routes
+    }
   }
 }
