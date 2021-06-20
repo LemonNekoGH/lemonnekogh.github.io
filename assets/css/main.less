@@ -19,9 +19,49 @@
   img {
     max-width: 100%;
   }
+  table {
+    margin: 20px auto;
+    border-radius: 5px;
+    border: rgba(0,0,0,.12) 1px solid!important;
+    border-spacing: 0;
+    th, td {
+      padding: 5px;
+    }
+    thead {
+      tr {
+        th {
+          border-bottom: rgba(0,0,0,.12) 1px solid;
+          border-right: rgba(0,0,0,.12) 1px solid;
+          &:last-child {
+            border-right: none
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          border-bottom: rgba(0,0,0,.12) 1px solid;
+          border-right: rgba(0,0,0,.12) 1px solid;
+          &:last-child {
+            border-right: none
+          }
+        }
+        &:last-child {
+          td {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
 }
 .post-detail-card {
   .v-card__text {
     color: black!important;
+  }
+  &-header {
+    display: flex;
+    align-items: center;
   }
 }
