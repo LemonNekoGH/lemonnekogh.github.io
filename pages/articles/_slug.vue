@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card v-if="!updateTime" outlined class="post-loading-card">
+    <v-card v-if="!updateTime" outlined class="post-loading-card" rounded="lg">
       <div class="post-loading-card-header">
         <v-skeleton-loader type="avatar" />
         <div class="post-loading-card-header-texts">
@@ -18,7 +18,7 @@
         <v-skeleton-loader type="text" max-width="50%" />
       </v-card-text>
     </v-card>
-    <v-card v-else outlined class="post-detail-card">
+    <v-card v-else outlined class="post-detail-card" rounded="lg">
       <div class="post-detail-card-header">
         <div class="width-10px" />
         <v-btn icon @click="$router.back()">

@@ -15,7 +15,7 @@ export default {
       { hid: 'description', name: 'description', content: '柠喵的博客，用于记录各种各样的东西' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
     ]
   },
 
@@ -40,18 +40,22 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxt/content',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/robots'
   ],
   vuetify: {
     theme: {
       themes: {
         light: {
-          primary: '#ff8a65'
+          primary: '#ff8a65',
+          accent1: '#FFC9B8'
         }
       }
     }
   },
-
+  robots: {
+    UserAgent: '*'
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
