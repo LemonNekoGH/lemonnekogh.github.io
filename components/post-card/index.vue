@@ -1,5 +1,5 @@
 <template>
-  <v-card outlined :href="data.path" rounded="lg">
+  <v-card outlined :href="data.path" :nuxt="true" rounded="lg">
     <v-card-title>{{ data.title }}</v-card-title>
     <v-card-subtitle>
       <div class="post-card-times">

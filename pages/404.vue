@@ -7,7 +7,7 @@
       <div class="card-404-text">
         页面被猫咪吃掉了
       </div>
-      <v-btn outlined color="accent1" class="btn-back" @click="$router.push('/')">
+      <v-btn outlined color="accent1" class="btn-back" :nuxt="true" href="/">
         返回首页
       </v-btn>
     </div>
