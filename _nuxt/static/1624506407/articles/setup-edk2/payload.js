@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/articles/setup-edk2", {data:[{}],fetch:{},mutations:[]});

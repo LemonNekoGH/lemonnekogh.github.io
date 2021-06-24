@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/articles/about-typescript-project", {data:[{}],fetch:{},mutations:void 0});

@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/articles/summary-of-a-week-0", {data:[{}],fetch:{},mutations:void 0});

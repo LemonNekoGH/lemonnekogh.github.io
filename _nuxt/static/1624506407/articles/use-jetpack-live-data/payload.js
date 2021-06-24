@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/articles/use-jetpack-live-data", {data:[{}],fetch:{},mutations:[]});

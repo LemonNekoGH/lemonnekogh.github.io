@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/articles/create-your-first-react-app", {data:[{}],fetch:{},mutations:void 0});
