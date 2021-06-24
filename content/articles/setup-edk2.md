@@ -1,8 +1,11 @@
 ---
 title: UEFI应用开发：设置UDK开发环境（MacOS）
-category: UEFI
+category: 记录
+tags:
+  - UEFI
+  - 操作系统引导
 abbrlink: 248c5444
-date: 2020-08-23 17:13:22
+createTime: 1604674330261
 ---
 看这标题，应该就知道柠喵要整一个大家伙了，具体是啥柠喵先不透露，但是呢，在整这个大家伙之前，需要先有整这个大家伙的环境。
 <!--more-->

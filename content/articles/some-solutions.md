@@ -1,13 +1,12 @@
 ---
 title: 一些日常遇到的小问题的解决方案
-abbrlink: 897bac92
-date: 2019-10-30 12:34:56
+createTime: 1598237632134
 tags: 
   - Windows
   - Android
   - macOS
   - Hexo
-category: 教程
+category: 记录
 ---
 在工作和学习中难免会遇到各种各样的小问题，有些问题甚至会多次出现，为了不把时间浪费在同一个问题上，我决定专门拿一篇文章来记录解决方法，本文长期更新。
 

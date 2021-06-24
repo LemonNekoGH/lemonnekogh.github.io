@@ -1,9 +1,10 @@
 ---
 title: Jetpack LiveData的使用：实现Vue应用的响应式特性
-category: 技术随笔
+category: 记录
 tags:
   - Android
   - Jetpack LiveData
+createTime: 1623998465561
 ---
 
 ### 前言

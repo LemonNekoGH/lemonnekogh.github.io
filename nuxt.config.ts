@@ -15,7 +15,7 @@ export default {
       { hid: 'description', name: 'description', content: '柠喵的博客，用于记录各种各样的东西' }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+      { rel: 'icon', type: 'image/png', href: '/images/favicon.png' }
     ]
   },
 
@@ -51,6 +51,9 @@ export default {
           accent1: '#FFC9B8'
         }
       }
+    },
+    breakpoint: {
+      mobileBreakpoint: 'xs'
     }
   },
   robots: {
@@ -64,7 +67,7 @@ export default {
     async routes (): Promise<string[]> {
       const { $content } = require('@nuxt/content')
       const files = await $content('articles', { deep: true })
-        .sortBy('createdAt', 'desc')
+        .sortBy('createTime', 'desc')
         .only(['path'])
         .fetch()
       const routes: string[] = []
@@ -75,5 +78,9 @@ export default {
       }
       return routes
     }
+  },
+  loading: {
+    color: 'white',
+    height: '2px'
   }
 }

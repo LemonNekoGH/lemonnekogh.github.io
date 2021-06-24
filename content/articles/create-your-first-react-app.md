@@ -4,7 +4,7 @@ tags:
  - React
  - 代码 
 category: 记录 
-date: 2021-01-28T21:21:21.000Z 
+createTime: 1614953941272
 abbrlink: 39c9f020
 ---
 在庆祝之前，我要说一句，React是垃圾，React是垃圾，React是垃圾，好像说了三句，算了，反正它就是垃圾。

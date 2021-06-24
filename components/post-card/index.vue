@@ -2,15 +2,28 @@
   <v-card outlined :href="data.path" :nuxt="true" rounded="lg">
     <v-card-title>{{ data.title }}</v-card-title>
     <v-card-subtitle>
-      <div class="post-card-times">
-        <div>发布时间：{{ createTime }}</div>
-        <div class="width-10px" />
-        <div>更新时间：{{ updateTime }}</div>
+      <div class="card-subtitle-tags">
+        <div>{{ createTime }}</div>
       </div>
     </v-card-subtitle>
     <v-divider />
     <v-card-text>
       {{ data.description }}
+    </v-card-text>
+    <v-divider />
+    <v-card-text>
+      <div class="tags">
+        <div class="tag-container">
+          <v-chip :nuxt="true" label outlined :to="'/category/' + data.category" color="primary">
+            {{ data.category }}
+          </v-chip>
+        </div>
+        <div v-for="tag of data.tags" :key="tag" class="tag-container">
+          <v-chip :nuxt="true" label outlined :to="'/tag/' + tag" :color="tagColorMap[tag]">
+            {{ tag }}
+          </v-chip>
+        </div>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -18,6 +31,7 @@
 import Vue from 'vue'
 import { IContentDocument } from '@nuxt/content/types/content'
 import moment from 'moment'
+import { mapState } from 'vuex'
 
 export default Vue.extend({
   props: {
@@ -27,27 +41,22 @@ export default Vue.extend({
     }
   },
   computed: {
+    ...mapState(['tagColorMap']),
     createTime (): string {
-      return moment(this.data.createdAt).format('YYYY 年 MM 月 D 日 HH:mm:ss')
-    },
-    updateTime (): string {
-      return moment(this.data.updatedAt).format('YYYY 年 MM 月 D 日 HH:mm:ss')
+      return moment(this.data.createTime).format('YYYY 年 MM 月 D 日 HH:mm:ss')
     }
   }
 })
 </script>
 <style lang="less" scoped>
-.post-card {
-  &-times {
-    display: flex;
-  }
+.tags {
+  display: flex;
 }
-
-@media screen and (max-width: 600px){
-  .post-card {
-    &-times {
-      flex-direction: column;
-    }
+.tag-container {
+  flex-shrink: 0;
+  margin-right: 10px;
+  &:last-child {
+    margin-right: 0;
   }
 }
 </style>

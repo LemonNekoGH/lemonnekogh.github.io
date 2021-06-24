@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row v-for="(item) in posts" :key="item.path" justify="center">
+    <v-row v-for="(item) in posts" :key="item.path" justify="center" :dense="$vuetify.breakpoint.mobile">
       <v-col>
         <post-card :data="item" />
       </v-col>
@@ -10,30 +10,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { IContentDocument } from '@nuxt/content/types/content'
 import PostCard from '@/components/post-card/index.vue'
+import { mapState } from 'vuex'
 
 export default Vue.extend({
   components: {
     PostCard
   },
-  data () {
-    return {
-      posts: [] as IContentDocument[]
-    }
-  },
-  mounted () {
-    this.getContent()
-  },
-  methods: {
-    async getContent () {
-      const posts = await this.$content('articles').sortBy('createdAt', 'desc').fetch()
-      if (Array.isArray(posts)) {
-        this.posts = posts
-      } else {
-        this.posts.push(posts)
-      }
-    }
+  computed: {
+    ...mapState(['tags', 'posts'])
   }
 })
 </script>

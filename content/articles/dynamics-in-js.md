@@ -3,7 +3,8 @@
 title: 「动态类型之痛」那些可以被认为是 False 的值
 tags: 
   - JavaScript
-category: 技术随笔
+category: 记录
+createTime: 1623998442429
 ---
 
 > 写这篇文章是为了不让自己忘记这种神奇操作，至少在习惯静态类型的人来说是神奇操作
