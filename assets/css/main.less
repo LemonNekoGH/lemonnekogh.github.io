@@ -67,3 +67,40 @@
     align-items: center;
   }
 }
+
+.fade-slide {
+  &-enter {
+    opacity: 0;
+    transform: translateX(-5px);
+    &-active {
+      transition: all 250ms;
+    }
+    &-to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  &-leave {
+    opacity: 1;
+    transform: translateX(0px);
+    &-active {
+      transition: all 250ms;
+    }
+    &-to {
+      opacity: 0;
+      transform: translateX(5px);
+    }
+  }
+}
+
+@media screen and (min-width: 1904px) {
+  .container {
+    max-width: 1185px;
+  }
+}
+.theme--light.v-timeline .v-timeline-item .v-card::before {
+  border-right-color: transparent!important;
+}
+.v-timeline-item__body > .v-card:not(.v-card--flat):before, .v-timeline-item__body > .v-card:not(.v-card--flat):after {
+  border-right-color: transparent!important;
+}

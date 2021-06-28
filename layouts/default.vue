@@ -19,7 +19,9 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        <nuxt />
+        <transition mode="out-in" name="fade-slide">
+          <nuxt />
+        </transition>
       </v-container>
     </v-main>
   </v-app>
@@ -29,7 +31,6 @@
 import Vue from 'vue'
 import { mapMutations, mapState } from 'vuex'
 import Lodash from 'lodash'
-import { IContentDocument } from '@nuxt/content/types/content'
 import { TagColorMap } from '~/store'
 import { Colors } from '~/utils/Colors'
 
@@ -61,7 +62,7 @@ export default Vue.extend({
     ...mapMutations(['setTagColor', 'setTags', 'setPosts']),
     async initStore () {
       console.log('initializing posts')
-      const res = await this.$content('articles').sortBy('createdAt', 'desc').fetch()
+      const res = await this.$content('articles').sortBy('createTime', 'desc').fetch()
       if (Array.isArray(res)) {
         this.setPosts(res)
       } else {
@@ -69,9 +70,11 @@ export default Vue.extend({
       }
       const tagArr: string[] = []
       for (const post of this.posts) {
-        for (const tag of post.tags) {
-          if (!Lodash.includes(tagArr, tag)) {
-            tagArr.push(tag)
+        if (Array.isArray(post.tags)) {
+          for (const tag of post.tags) {
+            if (!Lodash.includes(tagArr, tag)) {
+              tagArr.push(tag)
+            }
           }
         }
       }

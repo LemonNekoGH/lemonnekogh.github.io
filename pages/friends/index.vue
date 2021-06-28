@@ -35,7 +35,7 @@ export default Vue.extend({
   computed: {
     cardImgWidth (): string {
       switch (this.$vuetify.breakpoint.name) {
-        case 'xl': return '344'
+        case 'xl': return '280'
         case 'lg': return '280'
         case 'md': return '209'
         case 'sm': return '187'
@@ -78,7 +78,7 @@ export default Vue.extend({
 /* xl */
 @media screen and (min-width: 1905px) {
   .grid {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 </style>

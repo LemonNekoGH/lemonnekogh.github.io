@@ -1,27 +1,19 @@
-export class Colors {
-  static randomColor (alpha: boolean = false): string {
-    let color = ''
-    let times = 6
-    if (alpha) {
-      times = 8
-    }
-    for (let i = 0; i < times; i++) {
-      color += this.randomHexDigital()
-    }
+import { random } from '@ctrl/tinycolor'
 
-    return '#' + color
+export class Colors {
+  static randomColor (): string {
+    let color = random()
+    while (color.getBrightness() < 114 || color.getBrightness() > 144) {
+      color = random()
+    }
+    return '#' + color.toHex()
   }
 
-  static randomColors (num: number, alpha: boolean = false): string[] {
+  static randomColors (num: number): string[] {
     const colors: string[] = []
     for (let i = 0; i < num; i++) {
-      colors.push(this.randomColor(alpha))
+      colors.push(this.randomColor())
     }
-
     return colors
-  }
-
-  static randomHexDigital (): string {
-    return Math.floor(Math.random() * 16).toString(16)
   }
 }
