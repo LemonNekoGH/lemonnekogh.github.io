@@ -1,5 +1,5 @@
 <template>
-  <v-card outlined :href="data.path" :nuxt="true" rounded="lg">
+  <v-card outlined :href="data.path" :nuxt="true" rounded="lg" class="tag-cloud">
     <v-card-title>{{ data.title }}</v-card-title>
     <v-card-subtitle>
       <div class="card-subtitle-tags">
@@ -48,15 +48,3 @@ export default Vue.extend({
   }
 })
 </script>
-<style lang="less" scoped>
-.tags {
-  display: flex;
-}
-.tag-container {
-  flex-shrink: 0;
-  margin-right: 10px;
-  &:last-child {
-    margin-right: 0;
-  }
-}
-</style>

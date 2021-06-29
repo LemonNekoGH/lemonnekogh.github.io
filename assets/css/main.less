@@ -104,3 +104,20 @@
 .v-timeline-item__body > .v-card:not(.v-card--flat):before, .v-timeline-item__body > .v-card:not(.v-card--flat):after {
   border-right-color: transparent!important;
 }
+.tag-container {
+  flex-shrink: 0;
+  margin-right: 16px;
+  margin-top: 16px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag-cloud {
+  .v-card__text {
+    padding-top: 0!important;
+  }
+}
