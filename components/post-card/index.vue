@@ -1,5 +1,5 @@
 <template>
-  <v-card outlined :href="data.path" :nuxt="true" rounded="lg" class="tag-cloud">
+  <v-card outlined :href="data.path" :nuxt="true" rounded="lg">
     <v-card-title>{{ data.title }}</v-card-title>
     <v-card-subtitle>
       <div class="card-subtitle-tags">
@@ -11,20 +11,30 @@
       {{ data.description }}
     </v-card-text>
     <v-divider />
-    <v-card-text>
-      <div class="tags">
-        <div class="tag-container">
-          <v-chip :nuxt="true" label outlined :to="'/category/' + data.category" color="primary">
-            {{ data.category }}
-          </v-chip>
+    <div class="tag-cloud">
+      <v-card-text>
+        <div class="tags">
+          <div v-if="data.category" class="tag-container">
+            <v-chip :nuxt="true" label outlined :to="'/category/' + data.category" color="primary">
+              {{ data.category }}
+            </v-chip>
+          </div>
+          <div v-for="tag of data.tags" :key="tag" class="tag-container">
+            <v-chip :nuxt="true" label outlined :to="'/tag/' + tag" :color="tagColorMap[tag]">
+              {{ tag }}
+            </v-chip>
+          </div>
+          <div v-if="data.wip" class="tag-container">
+            <v-chip label outlined color="error">
+              <v-icon left>
+                mdi-alert-rhombus
+              </v-icon>
+              尚未完成
+            </v-chip>
+          </div>
         </div>
-        <div v-for="tag of data.tags" :key="tag" class="tag-container">
-          <v-chip :nuxt="true" label outlined :to="'/tag/' + tag" :color="tagColorMap[tag]">
-            {{ tag }}
-          </v-chip>
-        </div>
-      </div>
-    </v-card-text>
+      </v-card-text>
+    </div>
   </v-card>
 </template>
 <script lang="ts">

@@ -1,6 +1,16 @@
 <template>
   <div>
-    <v-card v-if="!updateTime" outlined class="post-loading-card" rounded="lg">
+    <v-alert
+      v-if="page.wip"
+      text
+      color="warning"
+      dark
+      outlined
+      rounded="lg"
+      icon="mdi-alert">
+      本文章尚未完成，内容可能出现较大改动
+    </v-alert>
+    <v-card v-if="!createTime" outlined class="post-loading-card" rounded="lg">
       <div class="post-loading-card-header">
         <v-skeleton-loader type="avatar" />
         <div class="post-loading-card-header-texts">
@@ -31,8 +41,6 @@
           <v-card-subtitle>
             <div class="post-times">
               <div>发布时间：{{ createTime }}</div>
-              <div class="width-10px" />
-              <div>更新时间：{{ updateTime }}</div>
             </div>
           </v-card-subtitle>
         </div>
@@ -59,12 +67,6 @@ export default Vue.extend({
     createTime (): string {
       if (this.page.createdAt) {
         return moment(this.page.createdAt).format('YYYY 年 MM 月 D 日 HH:mm:ss')
-      }
-      return ''
-    },
-    updateTime (): string {
-      if (this.page.updatedAt) {
-        return moment(this.page.updatedAt).format('YYYY 年 MM 月 D 日 HH:mm:ss')
       }
       return ''
     }
