@@ -71,6 +71,13 @@ export default Vue.extend({
       return ''
     }
   },
+  watch: {
+    page (val: IContentDocument) {
+      if (val.title) {
+        document.title = '柠喵的布洛阁 - ' + val.title
+      }
+    }
+  },
   mounted () {
     this.getData()
   },
