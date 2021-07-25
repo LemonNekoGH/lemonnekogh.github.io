@@ -14,12 +14,14 @@ export interface GlobalState {
   tags: string[]
   tagColorMap: TagColorMap
   posts: IContentDocument[]
+  categories: string[]
 }
 
 export interface GlobalMutations {
   setTags (state: GlobalState, payload: string[]): void
   setTagColor (state: GlobalState, payload: TagColorMap): void
   setPosts (state: GlobalState, payload: IContentDocument[]): void
+  setCategories (state: GlobalState, payload: string[]): void
   [name: string]: (state: GlobalState, payload?: any) => any
 }
 
@@ -31,7 +33,8 @@ export const state: () => GlobalState = () => {
   return {
     tags: [],
     tagColorMap: {},
-    posts: []
+    posts: [],
+    categories: []
   }
 }
 
@@ -46,6 +49,9 @@ export const mutations: GlobalMutations = {
   },
   setPosts (state: GlobalState, payload: IContentDocument[]) {
     state.posts = payload
+  },
+  setCategories (state: GlobalState, payload: string[]) {
+    state.categories = payload
   }
 }
 
@@ -60,7 +66,6 @@ export const getters: GlobalGetters = {
         ret[date].push(it)
       }
     })
-    console.log(ret)
     return ret
   }
 }

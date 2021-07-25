@@ -1,36 +1,46 @@
 <template>
-  <v-card outlined :href="data.path" :nuxt="true" rounded="lg">
+  <v-card :to="data.path" :nuxt="true" elevation="4">
     <v-card-title>{{ data.title }}</v-card-title>
     <v-card-subtitle>
       <div class="card-subtitle-tags">
         <div>{{ createTime }}</div>
       </div>
     </v-card-subtitle>
-    <v-divider />
     <v-card-text>
       {{ data.description }}
     </v-card-text>
-    <v-divider />
     <div class="tag-cloud">
       <v-card-text>
         <div class="tags">
           <div v-if="data.category" class="tag-container">
-            <v-chip :nuxt="true" label outlined :to="'/category/' + data.category" color="primary">
+            <v-btn
+              elevation="0"
+              :nuxt="true"
+              dark
+              :to="'/categories?active=' + data.category"
+              color="primary"
+              class="no-auto-uppercase">
               {{ data.category }}
-            </v-chip>
+            </v-btn>
           </div>
           <div v-for="tag of data.tags" :key="tag" class="tag-container">
-            <v-chip :nuxt="true" label outlined :to="'/tag/' + tag" :color="tagColorMap[tag]">
+            <v-btn
+              elevation="0"
+              :nuxt="true"
+              dark
+              :to="'/tags?active=' + tag"
+              :color="tagColorMap[tag]"
+              class="no-auto-uppercase">
               {{ tag }}
-            </v-chip>
+            </v-btn>
           </div>
           <div v-if="data.wip" class="tag-container">
-            <v-chip label outlined color="error">
+            <v-btn dark color="error" class="no-auto-uppercase" elevation="0">
               <v-icon left>
                 mdi-alert-rhombus
               </v-icon>
               尚未完成
-            </v-chip>
+            </v-btn>
           </div>
         </div>
       </v-card-text>

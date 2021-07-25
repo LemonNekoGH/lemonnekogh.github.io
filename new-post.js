@@ -1,11 +1,18 @@
 // Usage:
 // yarn new <name>
-const arg = process.argv.pop()
-const fs = require('fs').promises
-fs.appendFile(`./content/articles/${arg}.md`, `---
+function main() {
+  if (process.argv.length < 3) {
+    console.log('Usage: yarn new <post-name>')
+    return
+  }
+  const arg = process.argv[2]
+  const fs = require('fs').promises
+  fs.appendFile(`./content/articles/${arg}.md`, `---
 title: ${arg}
 createTime: ${Date.now()}
 ---
 `).then()
-// eslint-disable-next-line no-console
-console.log(`created ./content/articles/${arg}.md`)
+  console.log(`created ./content/articles/${arg}.md`)
+}
+
+main()

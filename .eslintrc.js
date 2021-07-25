@@ -12,5 +12,8 @@ module.exports = {
   ],
   rules: {
     'vue/html-closing-bracket-newline': 'off'
-  }
+  },
+  ignorePatterns: [
+    'new-post.js'
+  ]
 }

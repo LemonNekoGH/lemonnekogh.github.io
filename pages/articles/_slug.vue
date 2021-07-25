@@ -1,56 +1,57 @@
 <template>
-  <div>
-    <v-alert
-      v-if="page.wip"
-      text
-      color="warning"
-      dark
-      outlined
-      rounded="lg"
-      icon="mdi-alert">
-      本文章尚未完成，内容可能出现较大改动
-    </v-alert>
-    <v-card v-if="!createTime" outlined class="post-loading-card" rounded="lg">
-      <div class="post-loading-card-header">
-        <v-skeleton-loader type="avatar" />
-        <div class="post-loading-card-header-texts">
-          <v-skeleton-loader type="heading" />
-          <v-skeleton-loader type="text" class="text-loading" />
+  <v-container>
+    <div>
+      <v-alert
+        v-if="page.wip"
+        text
+        color="warning"
+        dark
+        outlined
+        rounded="lg"
+        icon="mdi-alert">
+        本文章尚未完成，内容可能出现较大改动
+      </v-alert>
+      <v-card v-if="!createTime" class="post-loading-card">
+        <div class="post-loading-card-header">
+          <v-skeleton-loader type="avatar" />
+          <div class="post-loading-card-header-texts">
+            <v-skeleton-loader type="heading" />
+            <v-skeleton-loader type="text" class="text-loading" />
+          </div>
         </div>
-      </div>
-      <v-divider />
-      <v-card-text>
-        <v-skeleton-loader type="text" />
-        <v-skeleton-loader type="text" />
-        <v-skeleton-loader type="text" max-width="50%" />
-        <v-skeleton-loader type="text" />
-        <v-skeleton-loader type="text" />
-        <v-skeleton-loader type="text" max-width="50%" />
-      </v-card-text>
-    </v-card>
-    <v-card v-else outlined class="post-detail-card" rounded="lg">
-      <div class="post-detail-card-header">
-        <div class="width-10px" />
-        <v-btn icon @click="$router.back()">
-          <v-icon>mdi-arrow-left</v-icon>
-        </v-btn>
-        <div>
-          <v-card-title>
-            {{ page && page.title }}
-          </v-card-title>
-          <v-card-subtitle>
-            <div class="post-times">
-              <div>发布时间：{{ createTime }}</div>
-            </div>
-          </v-card-subtitle>
+        <v-divider />
+        <v-card-text>
+          <v-skeleton-loader type="text" />
+          <v-skeleton-loader type="text" />
+          <v-skeleton-loader type="text" max-width="50%" />
+          <v-skeleton-loader type="text" />
+          <v-skeleton-loader type="text" />
+          <v-skeleton-loader type="text" max-width="50%" />
+        </v-card-text>
+      </v-card>
+      <v-card v-else class="post-detail-card">
+        <div class="post-detail-card-header">
+          <div class="width-10px" />
+          <v-btn elevation="0" fab text @click="$router.back()">
+            <v-icon>mdi-arrow-left</v-icon>
+          </v-btn>
+          <div>
+            <v-card-title>
+              {{ page && page.title }}
+            </v-card-title>
+            <v-card-subtitle>
+              <div class="post-times">
+                <div>发布时间：{{ createTime }}</div>
+              </div>
+            </v-card-subtitle>
+          </div>
         </div>
-      </div>
-      <v-divider />
-      <v-card-text>
-        <nuxt-content :document="page" />
-      </v-card-text>
-    </v-card>
-  </div>
+        <v-card-text>
+          <nuxt-content :document="page" />
+        </v-card-text>
+      </v-card>
+    </div>
+  </v-container>
 </template>
 <script lang="ts">
 import Vue from 'vue'
@@ -87,7 +88,7 @@ export default Vue.extend({
       if (!Array.isArray(page)) {
         setTimeout(() => {
           this.page = page
-        }, 1500)
+        }, 500)
       }
     }
   }

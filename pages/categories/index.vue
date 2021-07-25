@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <tags-and-categories show-type="tags" />
+        <tags-and-categories show-type="categories" />
       </v-col>
     </v-row>
   </v-container>
@@ -17,3 +17,4 @@ export default Vue.extend({
   }
 })
 </script>
+<style lang="less" scoped></style>

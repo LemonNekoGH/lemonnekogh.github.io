@@ -3,26 +3,23 @@
     <v-app-bar
       color="primary"
       dark
-      flat
+      elevation="4"
       app>
       <div class="text-h5 app-bar-title">
         柠喵的布洛阁
       </div>
-      <v-tabs right>
-        <v-tab v-for="tab of tabs" :key="tab.name" :nuxt="true" :to="tab.to">
-          <v-icon left>
-            {{ tab.icon }}
-          </v-icon>
-          {{ tab.name }}
-        </v-tab>
-      </v-tabs>
+      <div class="width-10px" />
+      <v-btn v-for="tab of tabs" :key="tab.name" :nuxt="true" :to="tab.to" text>
+        <v-icon left>
+          {{ tab.icon }}
+        </v-icon>
+        {{ tab.name }}
+      </v-btn>
     </v-app-bar>
     <v-main>
-      <v-container>
-        <transition mode="out-in" name="fade-slide">
-          <nuxt />
-        </transition>
-      </v-container>
+      <transition mode="out-in" name="fade-slide">
+        <nuxt />
+      </transition>
     </v-main>
   </v-app>
 </template>
@@ -59,15 +56,16 @@ export default Vue.extend({
     this.initStore()
   },
   methods: {
-    ...mapMutations(['setTagColor', 'setTags', 'setPosts']),
+    ...mapMutations(['setTagColor', 'setTags', 'setPosts', 'setCategories']),
     async initStore () {
-      console.log('initializing posts')
+      // 获取文章
       const res = await this.$content('articles').sortBy('createTime', 'desc').fetch()
       if (Array.isArray(res)) {
         this.setPosts(res)
       } else {
         this.setPosts([res])
       }
+      // 统计标签
       const tagArr: string[] = []
       for (const post of this.posts) {
         if (Array.isArray(post.tags)) {
@@ -79,12 +77,20 @@ export default Vue.extend({
         }
       }
       this.setTags(tagArr)
+      // 生成不亮不暗的随机颜色
       const map: TagColorMap = {}
       this.tags.forEach((it: string) => {
         map[it] = Colors.randomColor()
       })
       this.setTagColor(map)
-      console.log(map)
+      // 统计分类
+      const categories: string[] = []
+      for (const post of this.posts) {
+        if (!categories.includes(post.category)) {
+          categories.push(post.category)
+        }
+      }
+      this.setCategories(categories)
     }
   }
 })

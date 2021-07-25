@@ -1,16 +1,17 @@
 <template>
-  <div class="grid">
-    <v-card
-      v-for="data of cards"
-      :key="data.url"
-      outlined
-      rounded="lg"
-      :href="data.url"
-      target="_blank">
-      <v-img :src="data.imageUrl" :height="cardImgWidth" :width="cardImgWidth" />
-      <v-card-title>{{ data.name }}</v-card-title>
-    </v-card>
-  </div>
+  <v-container>
+    <div class="grid">
+      <v-card
+        v-for="data of cards"
+        :key="data.url"
+        elevation="4"
+        :href="data.url"
+        target="_blank">
+        <v-img :src="data.imageUrl" :height="cardImgWidth" :width="cardImgWidth" />
+        <v-card-title>{{ data.name }}</v-card-title>
+      </v-card>
+    </div>
+  </v-container>
 </template>
 <script lang="ts">
 import Vue from 'vue'
