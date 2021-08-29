@@ -24,6 +24,7 @@
     "@types/lodash": "^4.14.170",
     "babel-eslint": "^10.1.0",
     "core-js": "^3.15.1",
+    "element-ui": "^2.15.5",
     "eslint": "^7.22.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.7.0",
