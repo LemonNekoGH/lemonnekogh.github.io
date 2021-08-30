@@ -1,0 +1,1 @@
+window.__NUXT__=(function(a){return {staticAssetsBase:"\u002F_nuxt\u002Fstatic\u002F1630318993",layout:"default",error:a,state:{tags:[],tagColorMap:{},posts:[],categories:[]},serverRendered:true,routePath:"\u002Farticles\u002Fsummary-of-a-week-0",config:{_app:{basePath:"\u002F",assetsPath:"\u002F_nuxt\u002F",cdnURL:a},content:{dbHash:"4d272fdb"}}}}(null));
