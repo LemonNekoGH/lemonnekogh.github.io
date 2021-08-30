@@ -1,9 +1,308 @@
 <!DOCTYPE html>
 <html lang="zh" {{ HTML_ATTRS }}>
+
 <head {{ HEAD_ATTRS }}>
-  {{ HEAD }}
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    @keyframes scale-in {
+      0% {
+        transform: scale(0);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes scale-x-in {
+      0% {
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+
+      100% {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+
+    @keyframes fade-out {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes scale-x-infinity {
+      0% {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      100% {
+        transform: scaleX(8);
+        transform-origin: left;
+      }
+    }
+
+
+    .loading-start {
+      animation: cubic-bezier(0, 0, 0.13, 1) scale-in 1000ms forwards;
+    }
+
+    .fade-out {
+      animation: linear fade-out 250ms forwards;
+    }
+
+    .fade-in {
+      animation: linear fade-in 250ms forwards;
+    }
+
+    .scale-0 {
+      transform: scale(0);
+    }
+
+    .scale-x-0 {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    .scale-x-in {
+      animation: cubic-bezier(0, 0, 0.13, 1) scale-x-in 1000ms forwards;
+    }
+
+    .loading-progress-break {
+      animation: cubic-bezier(1, 0, 1, 0) scale-x-infinity 1000ms forwards;
+    }
+
+    #loading-page,
+    #loading-page-1,
+    #loading-page-2,
+    #loading-page-3 {
+      z-index: 99999;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #loading-page-1 {
+      background-color: #fc7299;
+    }
+
+    #loading-page-2 {
+      background-color: #5BCEFA;
+    }
+
+    #loading-page-3 {
+      background-color: white;
+    }
+
+    #loading-page-content {
+      color: white;
+      font-size: 25px;
+      line-height: 50px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+    }
+
+    #loading-page-progress {
+      box-sizing: content-box!important;
+      height: 20px;
+      border: white 2px solid;
+      background-color: rgba(255, 255, 255, .5);
+    }
+
+    #loading-page-progress-bar {
+      position: relative;
+      top: -2px;
+      height: 24px;
+      width: 66.6%;
+      background-color: white;
+    }
+
+    #loaded-page {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #loaded-page-text {
+      font-size: 25px;
+      line-height: 60px;
+    }
+
+    #loaded-page-reload {
+      background-color: white;
+      border: black 2px solid;
+      padding: 5px;
+      font-size: 15px;
+      transition: all 250ms;
+    }
+
+    #loaded-page-reload:hover {
+      transition: all 250ms;
+      background-color: black;
+      color: white;
+    }
+
+    @media screen and (min-width: 1904px) {
+      #loading-page-content {
+        width: 30%;
+      }
+    }
+
+    @media screen and (min-width: 1264px) and (max-width: 1904px) {
+      #loading-page-content {
+        width: 40%;
+      }
+    }
+  </style>
+    {{ HEAD }}
 </head>
+
 <body {{ BODY_ATTRS }}>
-{{ APP }}
+  <div id="loading-page">
+    <div id="loading-page-1">
+      <div id="loading-page-content">
+        <div id="loading-page-text" class="loading-start">Preloading</div>
+        <div id="loading-page-progress" class="scale-0">
+          <div id="loading-page-progress-bar" class="scale-x-0"></div>
+        </div>
+      </div>
+    </div>
+    <div id="loading-page-2" class="scale-x-0"></div>
+    <div id="loading-page-3" class="scale-x-0"></div>
+  </div>
+  <script>
+    (function () {
+      const loadingPage = document.querySelector('#loading-page')
+      const loadingPage1 = document.querySelector('#loading-page-1')
+      const loadingPage2 = document.querySelector('#loading-page-2')
+      const loadingPage3 = document.querySelector('#loading-page-3')
+
+      const loadingContent = document.querySelector('#loading-page-content')
+      const loadingText = document.querySelector('#loading-page-text')
+      const loadingProgress = document.querySelector('#loading-page-progress')
+      const loadingProgressBar = document.querySelector('#loading-page-progress-bar')
+
+      const timeNow = Date.now()
+      const animationDelay = 1500 // ms
+      let loadSpentTime = 0
+
+      /**
+       * 第一阶段动画
+       */
+      function animationStep1() {
+        setTimeout(() => {
+          loadingProgress.classList.remove('scale-0')
+          loadingProgress.classList.add('loading-start')
+        }, 250)
+      }
+
+      /**
+       * 监听网页加载情况
+       */
+      function onReadyStateChange() {
+        if (document.readyState === 'complete') {
+          loadSpentTime = Date.now() - timeNow
+          console.log('load complete: ' + loadSpentTime + 'ms')
+        }
+      }
+
+      /**
+       * 监听动画结束事件
+       */
+      function onAnimationEnd(event) {
+        const element = event.target
+        const animationName = event.animationName
+
+        console.log(`elementId: ${element.id}, animationName: ${animationName}`)
+
+        if (element.id === 'loading-page-text') {
+          // 当加载文字动画结束
+          // 当出现动画结束时，让文字淡出
+          if (animationName === 'scale-in') {
+            element.classList.remove('loading-start')
+            element.classList.add('fade-out')
+          }
+          // 当淡出动画结束时，改变文本并重新淡入回来
+          else if (animationName === 'fade-out') {
+            element.innerText = 'Loading'
+            element.classList.remove('fade-out')
+            element.classList.add('fade-in')
+          }
+        } else if (element.id === 'loading-page-progress') {
+          // 当加载进度条动画结束
+          if (animationName === 'scale-in') {
+            loadingProgressBar.classList.remove('scale-x-0')
+            loadingProgressBar.classList.add('scale-x-in')
+          }
+        } else if (element.id === 'loading-page-progress-bar') {
+          // 当加载进度条动画第一部分结束
+          if (animationName === 'scale-x-in') {
+            loadingProgressBar.classList.remove('scale-x-in')
+            loadingProgressBar.classList.add('loading-progress-break')
+          }
+          // 当加载进度条动画第二部分结束
+          else if (animationName === 'scale-x-infinity') {
+            loadingPage2.classList.remove('scale-x-0')
+            loadingPage2.classList.add('scale-x-in')
+            setTimeout(() => {
+              loadingPage3.classList.remove('scale-x-0')
+              loadingPage3.classList.add('scale-x-in')
+            }, 250)
+          }
+        } else if (element.id === 'loading-page-3') {
+          // 当第二层遮罩把第一层遮住
+          if (animationName === 'scale-x-in') {
+            loadingPage.removeChild(loadingPage2)
+            loadingPage3.classList.remove('scale-x-in')
+            loadingPage3.classList.add('fade-out')
+          } else if (animationName === 'fade-out') {
+            document.body.removeChild(loadingPage)
+          }
+        } else if (element.id === 'loading-page-2') {
+          // 当第一层遮罩把进度条遮住
+          if (animationName === 'scale-x-in') {
+            loadingPage.removeChild(loadingPage1)
+          }
+        }
+      }
+
+      // 开始第一阶段动画
+      animationStep1()
+      // 设置监听器
+      document.onreadystatechange = onReadyStateChange
+      document.onanimationend = onAnimationEnd
+    })()
+  </script>
+  {{ APP }}
 </body>
 </html>
