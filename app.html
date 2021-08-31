@@ -30,6 +30,18 @@
       }
     }
 
+    @keyframes scale-x-out {
+      0% {
+        transform: scaleX(1);
+        transform-origin: right;
+      }
+
+      100% {
+        transform: scaleX(0);
+        transform-origin: right;
+      }
+    }
+
     @keyframes fade-out {
       0% {
         opacity: 1;
@@ -85,7 +97,11 @@
     }
 
     .scale-x-in {
-      animation: cubic-bezier(0, 0, 0.13, 1) scale-x-in 1000ms forwards;
+      animation: cubic-bezier(0, 0, 0.13, 1) scale-x-in 750ms forwards;
+    }
+
+    .scale-x-out {
+      animation: cubic-bezier(0, 0, 0.13, 1) scale-x-out 750ms forwards;
     }
 
     .loading-progress-break {
@@ -112,10 +128,6 @@
 
     #loading-page-2 {
       background-color: #5BCEFA;
-    }
-
-    #loading-page-3 {
-      background-color: white;
     }
 
     #loading-page-content {
@@ -275,18 +287,8 @@
             loadingPage2.classList.remove('scale-x-0')
             loadingPage2.classList.add('scale-x-in')
             setTimeout(() => {
-              loadingPage3.classList.remove('scale-x-0')
-              loadingPage3.classList.add('scale-x-in')
+              loadingPage.classList.add('scale-x-out')
             }, 250)
-          }
-        } else if (element.id === 'loading-page-3') {
-          // 当第二层遮罩把第一层遮住
-          if (animationName === 'scale-x-in') {
-            loadingPage.removeChild(loadingPage2)
-            loadingPage3.classList.remove('scale-x-in')
-            loadingPage3.classList.add('fade-out')
-          } else if (animationName === 'fade-out') {
-            document.body.removeChild(loadingPage)
           }
         } else if (element.id === 'loading-page-2') {
           // 当第一层遮罩把进度条遮住
