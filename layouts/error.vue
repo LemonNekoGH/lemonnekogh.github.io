@@ -18,6 +18,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+
 export default Vue.extend({
   layout: 'empty',
   props: {
@@ -52,17 +53,20 @@ h1 {
   height: 300px;
   font-size: 96px;
   padding: 10px;
-&-text {
-   font-size: 24px;
- }
-&-container {
-   height: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
- }
-.btn-back {
-  margin-top: 20px;
-}
+
+  &-text {
+    font-size: 24px;
+  }
+
+  &-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-back {
+    margin-top: 20px;
+  }
 }
 </style>
