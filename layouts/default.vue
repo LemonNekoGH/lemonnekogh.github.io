@@ -8,9 +8,9 @@
         </div>
         <div class="spacer" />
         <div class="header-links">
-          <el-button v-for="tab of tabs" :key="tab.name" class="header-link" @click="$router.push(tab.to)">
+          <button v-for="tab of tabs" :key="tab.name" class="header-link" @click="$router.push(tab.to)">
             {{ tab.name }}
-          </el-button>
+          </button>
         </div>
         <div class="width-10px" />
       </div>
@@ -121,6 +121,13 @@ export default Vue.extend({
     border: 2px white solid;
     padding: 5px 10px;
     &:hover {
+      border-color: black;
+    }
+    &:active {
+      background: black;
+      color: white;
+    }
+    &-active {
       border-color: black;
     }
   }

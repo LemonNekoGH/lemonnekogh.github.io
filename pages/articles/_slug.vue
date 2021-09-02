@@ -16,7 +16,8 @@
           <button class="article-back-btn" @click="$router.back()">
             <i class="mdi mdi-arrow-left" />
           </button>
-          <div>
+          <div class="neko-divider-right" />
+          <div class="article-card-header-titles">
             <div class="article-title">
               {{ page && page.title }}
             </div>
@@ -105,9 +106,15 @@ export default Vue.extend({
     border: 2px solid black;
 
     &-header {
-      padding: 20px;
       display: flex;
-      column-gap: 10px;
+
+      &-back {
+        padding: 20px;
+      }
+
+      &-titles {
+        padding: 20px;
+      }
     }
   }
 
@@ -122,23 +129,34 @@ export default Vue.extend({
 
   &-back-btn {
     transition: all 250ms;
-    height: 50px;
-    width: 50px;
+    height: 90px;
+    width: 90px;
     box-sizing: border-box;
-    border: none;
+    border: 0 black solid;
 
     .mdi-arrow-left::before {
-      font-size: 24px;
+      font-size: 28px;
+      transition: transform 250ms;
     }
 
     &:hover {
-      border: 2px black solid;
+      background: black;
+      color: white;
+    }
+
+    &:active {
+        transform: scale(.9);
     }
   }
 }
+
 .neko-divider {
   height: 2px;
   border-top: 2px black solid;
   box-sizing: border-box;
+
+  &-right {
+    border-right: 2px solid black;
+  }
 }
 </style>
