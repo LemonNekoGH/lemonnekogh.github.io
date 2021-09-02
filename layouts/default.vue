@@ -2,6 +2,7 @@
   <el-container>
     <el-header class="header">
       <div class="header-container">
+        <div class="width-10px" />
         <div class="header-title">
           柠喵的布洛阁
         </div>
@@ -11,6 +12,7 @@
             {{ tab.name }}
           </el-button>
         </div>
+        <div class="width-10px" />
       </div>
     </el-header>
     <el-main>

@@ -1,5 +1,5 @@
 <template>
-  <div class="post-card">
+  <div class="post-card" @click="$router.push(data.path)">
     <div class="post-card-title">
       {{ data.title }}
     </div>
@@ -39,7 +39,7 @@ export default Vue.extend({
   border: black 2px solid;
   box-sizing: border-box;
   padding: 20px;
-  mix-blend-mode: difference;
+  cursor: pointer;
 
   &-title {
     font-size: 20px;
@@ -56,6 +56,10 @@ export default Vue.extend({
 
   &:hover {
     border-left-width: 10px;
+  }
+  &:active {
+    background: black;
+    color: white;
   }
 }
 </style>

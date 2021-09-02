@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <div>
+  <div class="article-page">
+    <div class="article-container">
       <v-alert
         v-if="page.wip"
         text
@@ -11,47 +11,29 @@
         icon="mdi-alert">
         本文章尚未完成，内容可能出现较大改动
       </v-alert>
-      <v-card v-if="!createTime" class="post-loading-card">
-        <div class="post-loading-card-header">
-          <v-skeleton-loader type="avatar" />
-          <div class="post-loading-card-header-texts">
-            <v-skeleton-loader type="heading" />
-            <v-skeleton-loader type="text" class="text-loading" />
-          </div>
-        </div>
-        <v-divider />
-        <v-card-text>
-          <v-skeleton-loader type="text" />
-          <v-skeleton-loader type="text" />
-          <v-skeleton-loader type="text" max-width="50%" />
-          <v-skeleton-loader type="text" />
-          <v-skeleton-loader type="text" />
-          <v-skeleton-loader type="text" max-width="50%" />
-        </v-card-text>
-      </v-card>
-      <v-card v-else class="post-detail-card">
-        <div class="post-detail-card-header">
-          <div class="width-10px" />
-          <v-btn elevation="0" fab text @click="$router.back()">
-            <v-icon>mdi-arrow-left</v-icon>
-          </v-btn>
+      <div class="article-card">
+        <div class="article-card-header">
+          <button class="article-back-btn" @click="$router.back()">
+            <i class="mdi mdi-arrow-left" />
+          </button>
           <div>
-            <v-card-title>
+            <div class="article-title">
               {{ page && page.title }}
-            </v-card-title>
-            <v-card-subtitle>
+            </div>
+            <div class="article-subtitle">
               <div class="post-times">
                 <div>发布时间：{{ createTime }}</div>
               </div>
-            </v-card-subtitle>
+            </div>
           </div>
         </div>
-        <v-card-text>
+        <div class="neko-divider" />
+        <div class="article-content">
           <nuxt-content :document="page" />
-        </v-card-text>
-      </v-card>
+        </div>
+      </div>
     </div>
-  </v-container>
+  </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
@@ -99,17 +81,6 @@ export default Vue.extend({
   display: flex;
   flex-direction: row;
 }
-.post-loading-card {
-  &-header {
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    &-texts {
-      flex: 1;
-      margin-left: 16px;
-    }
-  }
-}
 .text-loading {
   margin-top: 10px;
 }
@@ -117,5 +88,57 @@ export default Vue.extend({
   .post-times {
     flex-direction: column;
   }
+}
+.article {
+  &-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  &-container {
+    max-width: 1220px;
+  }
+
+  &-card {
+    margin-top: 20px;
+    border: 2px solid black;
+
+    &-header {
+      padding: 20px;
+      display: flex;
+      column-gap: 10px;
+    }
+  }
+
+  &-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  &-content {
+    padding: 20px;
+  }
+
+  &-back-btn {
+    transition: all 250ms;
+    height: 50px;
+    width: 50px;
+    box-sizing: border-box;
+    border: none;
+
+    .mdi-arrow-left::before {
+      font-size: 24px;
+    }
+
+    &:hover {
+      border: 2px black solid;
+    }
+  }
+}
+.neko-divider {
+  height: 2px;
+  border-top: 2px black solid;
+  box-sizing: border-box;
 }
 </style>
