@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/articles/move-camera-godot", {data:[{}],fetch:{},mutations:[]});
