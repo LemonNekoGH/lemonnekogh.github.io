@@ -1,0 +1,1 @@
+window.__NUXT__=(function(a){return {staticAssetsBase:"\u002F_nuxt\u002Fstatic\u002F1659841156",layout:"default",error:a,state:{tags:[],tagColorMap:{},posts:[],categories:[]},serverRendered:true,routePath:"\u002Farticles\u002Fhow-to-make-translucent-statusbar",config:{_app:{basePath:"\u002F",assetsPath:"\u002F_nuxt\u002F",cdnURL:a},content:{dbHash:"8ff47b63"}}}}(null));
