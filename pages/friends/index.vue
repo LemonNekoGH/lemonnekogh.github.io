@@ -26,10 +26,11 @@ export default Vue.extend({
   data () {
     return {
       cards: [
-        { name: 'NekoHit', imageUrl: 'https://www.nekohit.com/img/logo.webp', url: 'https://www.nekohit.com' },
+        { name: 'NekoHit', imageUrl: 'https://www.nekohit.com/assets/images/cat-dark.png', url: 'https://www.nekohit.com' },
         { name: 'Arcucy', imageUrl: 'https://avatars.githubusercontent.com/u/73817556?s=200&v=4', url: 'https://github.com/Arcucy' },
         { name: 'ArcLight', imageUrl: '/images/arclight.png', url: 'https://arclight.arcucy.io' },
-        { name: 'AyakaNeko', imageUrl: 'https://neko.ayaka.moe/img/avatar.jpg', url: 'https://neko.ayaka.moe/' }
+        { name: 'AyakaNeko', imageUrl: 'https://neko.ayaka.moe/img/avatar.jpg', url: 'https://neko.ayaka.moe/' },
+        { name: '朵琳', imageUrl: 'http://blog.high-spirits.me/images/avatar.jpg', url: 'http://blog.high-spirits.me/' }
       ] as CardData[]
     }
   },
