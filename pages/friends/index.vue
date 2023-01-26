@@ -30,7 +30,8 @@ export default Vue.extend({
         { name: 'Arcucy', imageUrl: 'https://avatars.githubusercontent.com/u/73817556?s=200&v=4', url: 'https://github.com/Arcucy' },
         { name: 'ArcLight', imageUrl: '/images/arclight.png', url: 'https://arclight.arcucy.io' },
         { name: 'AyakaNeko', imageUrl: 'https://neko.ayaka.moe/img/avatar.jpg', url: 'https://neko.ayaka.moe/' },
-        { name: '朵琳', imageUrl: 'http://blog.high-spirits.me/images/avatar.jpg', url: 'http://blog.high-spirits.me/' }
+        { name: '朵琳', imageUrl: 'http://blog.high-spirits.me/images/avatar.jpg', url: 'http://blog.high-spirits.me/' },
+        { name: 'Remi IO 🦇', imageUrl: 'https://raw.githubusercontent.com/u-u-z/u-u-z/main/img/Remi_IO.JPG', url: 'https://linux.dog' }
       ] as CardData[]
     }
   },
